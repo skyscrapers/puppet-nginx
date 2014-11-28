@@ -34,30 +34,4 @@ class nginx::config inherits nginx {
       notify  => Service['nginx'];
   }
 
-  # COLLECTD
-  # Skyscrapers specific
-  # Should move to the collectd module in time
-  if ($::lsbdistrelease == '14.04') {
-    file {
-      '/etc/collectd/collectd.conf.d/nginx.conf':
-        ensure => file,
-        source => 'puppet:///modules/nginx/usr/local/collectd/etc/collectd.d/nginx.conf',
-        mode   => '0644',
-        owner  => root,
-        group  => root,
-        notify => Exec['restart-collectd'];
-    }
-  }
-  else {
-    file {
-      '/usr/local/collectd/etc/collectd.d/nginx.conf':
-        ensure => file,
-        source => 'puppet:///modules/nginx/usr/local/collectd/etc/collectd.d/nginx.conf',
-        mode   => '0644',
-        owner  => root,
-        group  => root,
-        notify => Exec['restart-collectd'];
-    }
-  }
-
 }
