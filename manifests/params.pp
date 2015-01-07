@@ -20,6 +20,6 @@ class nginx::params {
   $nginxtype = 'nginx-light'
 
 
-  $passenegr = false
+  $passenger = false
 
 }

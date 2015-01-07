@@ -25,24 +25,24 @@ class nginx::config {
       mode   => '0644',
       owner  => root,
       group  => root,
-      notify => Class['nginx::service'];
+      notify => Service['nginx'];
 
     '/etc/nginx/sites-enabled/status':
       ensure  => target,
       target  => '/etc/nginx/sites-available/status',
       require => File['/etc/nginx/sites-available/status'],
-      notify  => Class['nginx::service'];
+      notify  => Service['nginx'];
   }
 
   if( $nginx::passenger == true ){
     file {
       '/etc/nginx/nginx.conf':
-      ensure => file,
-      source => 'puppet:///modules/nginx/etc/nginx/nginx-passenger.conf',
-      mode => '0644',
-      owner => root,
-      group => root,
-      notify => Class['nginx::service'];
+        ensure => file,
+        source => 'puppet:///modules/nginx/etc/nginx/nginx-passenger.conf',
+        mode   => '0644',
+        owner  => root,
+        group  => root,
+        notify => Service['nginx'];
     }
   }
 
