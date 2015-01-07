@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-class nginx::config inherits nginx {
+class nginx::config {
 
   file {
     # VHOST FOR STATS
@@ -25,13 +25,25 @@ class nginx::config inherits nginx {
       mode   => '0644',
       owner  => root,
       group  => root,
-      notify => Service['nginx'];
+      notify => Class['nginx::service'];
 
     '/etc/nginx/sites-enabled/status':
       ensure  => target,
       target  => '/etc/nginx/sites-available/status',
       require => File['/etc/nginx/sites-available/status'],
-      notify  => Service['nginx'];
+      notify  => Class['nginx::service'];
+  }
+
+  if( $nginx::passenger == true ){
+    file {
+      '/etc/nginx/nginx.conf':
+      ensure => file,
+      source => 'puppet:///modules/nginx/etc/nginx/nginx-passenger.conf',
+      mode => '0644',
+      owner => root,
+      group => root,
+      notify => Class['nginx::service'];
+    }
   }
 
 }

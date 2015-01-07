@@ -33,10 +33,17 @@
 # CONFIG
 # Most configuration (almost all) is done in the vhosts (other module)
 
-class nginx ($nginxtype = $nginx::params::nginxtype) inherits nginx::params {
+class nginx (
+  $nginxtype = $nginx::params::nginxtype,
+  $passenger = $nginx::params::passenger
+) inherits nginx::params {
 
-  class { '::nginx::install': } ->
-  class { '::nginx::config': } ~>
-  class { '::nginx::service': }
+  contain 'nginx::install'
+  contain 'nginx::config'
+  contain 'nginx::service'
+
+  Class['nginx::install'] ->
+  Class['nginx::config'] ~>
+  Class['nginx::service']
 
 }
