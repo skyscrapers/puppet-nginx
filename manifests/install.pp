@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-class nginx::install inherits nginx {
+class nginx::install {
 
   if ($::lsbdistrelease != '10.04') {
     $basepackages  = ['nginx-common']

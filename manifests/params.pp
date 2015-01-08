@@ -19,4 +19,7 @@ class nginx::params {
 
   $nginxtype = 'nginx-light'
 
+
+  $passenger = false
+
 }
