@@ -17,9 +17,38 @@
 
 # == Class nginx::redirect
 #
-# This class redirect a request
+# This class redirects a request
 #
+# == Variables
+#
+# $server_name
+# server name to listen for eg 'example.com'
+#
+# $target
+# target base url to redirect to eg: 'https://example.com'
+#
+# $ip (optional)
+# ip to listen on. eg: '*'
+#
+# $port (optional)
+# port to listen on. defaults to 80 if not defined or 443 if ssl is used
+# example: '8080'
+#
+# $server_aliases (optional)
+# list of server aliases eg: ['www.example.com', 'www2.example.com']
+#
+# $ssl_certificate $ssl_certificate_key
+# if using ssl, the path to the certificate and certificate key file
+# if these variables are both set, $ssl is set to TRUE
+# eg: '/etc/nginx/ssl/example.com.pem'
+#
+# example usage
+# nginx::redirect{'example-redirect':
+#   server_name     => 'example.com',
+#   target => 'anotherexample.com',
+# }
 ##
+
 define nginx::redirect (
     $server_name,
     $target,

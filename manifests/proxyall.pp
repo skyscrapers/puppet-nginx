@@ -19,6 +19,21 @@
 #
 # This class will proxy all requests on a port to a target
 #
+# == Variables
+#
+# $port
+# Port to listen on, eg '80'
+#
+# $target
+# url to proxy to, eg 'localhost:8001'
+#
+# example usage
+# nginx::proxyall{'default-proxy':
+#   ip     => '80',
+#   target => 'localhost:8001',
+# }
+##
+
 define nginx::proxyall (
     $port,
     $target,
