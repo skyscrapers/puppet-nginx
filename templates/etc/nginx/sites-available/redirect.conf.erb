@@ -1,5 +1,5 @@
 server {
-  listen          <%= @ip %>:<%= @port %>;
+  listen          <%= @ip %>:<%= @_port %>;
   server_name     <%= @server_name %> <% @server_aliases.each do |server_alias| -%><%= server_alias %> <% end -%>;
 
   <% if @ssl == true %>
