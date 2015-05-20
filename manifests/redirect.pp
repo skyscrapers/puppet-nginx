@@ -66,9 +66,11 @@ define nginx::redirect (
   }
 
   if($ssl and $port == undef){
-    $port = '443'
+    $_port = '443'
   } elsif(!$ssl and $port == undef) {
-    $port = '80'
+    $_port = '80'
+  } else {
+    $_port = $port
   }
 
   file {
