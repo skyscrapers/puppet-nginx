@@ -1,4 +1,4 @@
-upstream <%= @name % {
+upstream <%= @name %> {
     # Path to Unicorn SOCK file, as defined previously
     server unix:<%= @socket_path %> fail_timeout=0;
 }
