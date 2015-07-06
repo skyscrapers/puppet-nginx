@@ -50,7 +50,7 @@ class nginx::config {
   file {
     '/etc/logrotate.d/nginx':
       ensure   => file,
-      source   => 'puppet:///modules/apache2/etc/logrotate.d/nginx',
+      source   => 'puppet:///modules/nginx/etc/logrotate.d/nginx',
       mode     => '0644',
       owner    => root,
       group    => root;
