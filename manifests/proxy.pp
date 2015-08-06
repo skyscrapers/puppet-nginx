@@ -41,6 +41,12 @@ define nginx::proxy (
     $ssl = true
   }
 
+  if($proxy_ssl_out){
+     $_protocol = 'https'
+  } else {
+     $_protocol = 'http'
+  }
+
   file {
     "/etc/nginx/sites-available/${name}.conf":
       ensure   => file,

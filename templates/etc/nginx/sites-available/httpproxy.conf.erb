@@ -28,15 +28,9 @@ server {
 
       proxy_read_timeout  90;
 
-      <% if @proxy_ssl_out %>
       # Fix the “It appears that your reverse proxy set up is broken" error.
-      proxy_pass          https://<%= @proxy_host %>;
+      proxy_pass          <%= @_protocol %>://<%= @proxy_host %>;
 
-      #proxy_redirect      https://<%= @proxy_host %> <%= @url %>;
-      <% else %>
-      # Fix the “It appears that your reverse proxy set up is broken" error.
-      proxy_pass          http://<%= @proxy_host %>;
-      proxy_redirect      http://<%= @proxy_host %> <%= @url %>;
-      <% end %>
+      proxy_redirect      <%= @_protocol %>://<%= @proxy_host %> <%= @url %>;
     }
   }
