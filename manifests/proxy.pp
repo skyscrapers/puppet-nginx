@@ -25,7 +25,8 @@ define nginx::proxy (
   $port                       = 80,
   $ssl_certificate            = undef,
   $ssl_certificate_key        = undef,
-  $basic_authentication_file  = undef
+  $basic_authentication_file  = undef,
+  $proxy_ssl_out              = false
   ){
 
   if ! defined(Class['nginx']) {
