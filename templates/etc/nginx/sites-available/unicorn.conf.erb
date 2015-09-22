@@ -32,8 +32,11 @@ server {
     proxy_set_header Host $http_host;
     proxy_redirect off;
     proxy_pass http://<%= @name %>;
+    proxy_connect_timeout <%= @timeout %>;
+    proxy_send_timeout <%= @timeout %>;
+    proxy_read_timeout <%= @timeout %>;
   }
 
   client_max_body_size 4G;
-  keepalive_timeout 20;
+  keepalive_timeout <%= @timeout %>;
 }

@@ -27,6 +27,7 @@ define nginx::unicorn (
   $ssl_certificate            = undef,
   $ssl_certificate_key        = undef,
   $basic_authentication_file  = undef,
+  $timeout                    = 20,
   ){
 
   if ! defined(Class['nginx']) {
