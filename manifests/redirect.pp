@@ -57,6 +57,7 @@ define nginx::redirect (
     $server_aliases = [],
     $ssl_certificate = undef,
     $ssl_certificate_key = undef,
+    $ssl_dh_param = undef,
   ) {
 
   if($ssl_certificate == undef or $ssl_certificate_key == undef){

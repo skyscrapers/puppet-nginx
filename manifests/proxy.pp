@@ -25,6 +25,7 @@ define nginx::proxy (
   $port                       = 80,
   $ssl_certificate            = undef,
   $ssl_certificate_key        = undef,
+  $ssl_dh_param               = undef,
   $basic_authentication_file  = undef,
   $proxy_ssl_out              = false
   ){
