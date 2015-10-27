@@ -20,7 +20,24 @@ server {
 
   access_log            /var/log/nginx/<%= @name %>.access.log;
 
-  gzip_types    text/plain application/javascript application/x-javascript text/javascript text/xml text/css text/comma-separated-values image/svg+xml svg svgz application/json;
+  gzip on;
+  gzip_disable "msie6";
+  gzip_buffers      16 8k;
+  gzip_comp_level   6;
+  gzip_min_length   1280;
+  gzip_proxied      any;
+  gzip_types
+    text/plain
+    text/css
+    text/js
+    text/xml
+    text/javascript
+    application/javascript
+    application/x-javascript
+    application/json
+    application/xml
+    application/xml+rss;
+  gzip_vary         on;
 
   # Application root, as defined previously
   root <%= @root_path %>;
