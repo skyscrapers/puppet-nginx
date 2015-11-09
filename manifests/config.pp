@@ -18,6 +18,14 @@
 class nginx::config {
 
   file {
+    '/etc/nginx/conf.d/security.conf':
+      ensure => file,
+      source => 'puppet:///modules/nginx/etc/nginx/conf.d/security.conf',
+      mode   => '0644',
+      owner  => root,
+      group  => root,
+      notify => Service['nginx'];
+
     # VHOST FOR STATS
     '/etc/nginx/sites-available/status':
       ensure => file,
