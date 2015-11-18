@@ -60,6 +60,19 @@ server {
   client_max_body_size 4G;
   keepalive_timeout <%= @timeout %>;
 
+  location ^~ /mini-profiler-resoures/includes.js {
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    <% if @ssl == true %>
+    proxy_set_header    X-Forwarded-Proto https;
+    <% end %>
+    proxy_redirect off;
+    proxy_pass http://<%= @name %>;
+    proxy_connect_timeout <%= @timeout %>;
+    proxy_send_timeout <%= @timeout %>;
+    proxy_read_timeout <%= @timeout %>;
+  }
+  
   location ~* \.(?:ico|css|js|gif|jpe?g|png)$ {
     expires 1d;
     add_header Pragma public;
