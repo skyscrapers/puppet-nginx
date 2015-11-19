@@ -11,11 +11,11 @@ server {
   ssl_certificate           <%= @ssl_certificate %>;
   ssl_certificate_key       <%= @ssl_certificate_key %>;
 
-  ssl on;
-  ssl_session_cache  builtin:1000  shared:SSL:10m;
-  ssl_protocols  TLSv1 TLSv1.1 TLSv1.2;
-  ssl_ciphers HIGH:!aNULL:!eNULL:!EXPORT:!CAMELLIA:!DES:!MD5:!PSK:!RC4;
+  ssl_session_cache  shared:SSL:10m;
+  ssl_session_timeout  10m;
+  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
   ssl_prefer_server_ciphers on;
+  ssl_ciphers AES256+EECDH:AES256+EDH:AES128+EDH:!aNULL;
   <% end %>
 
   access_log            /var/log/nginx/<%= @name %>.access.log;
@@ -72,7 +72,7 @@ server {
     proxy_send_timeout <%= @timeout %>;
     proxy_read_timeout <%= @timeout %>;
   }
-  
+
   location ~* \.(?:ico|css|js|gif|jpe?g|png)$ {
     expires 1d;
     add_header Pragma public;
