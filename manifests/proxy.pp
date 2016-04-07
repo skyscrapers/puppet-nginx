@@ -21,6 +21,7 @@
 #
 define nginx::proxy (
   $hostname                   = undef,
+  $server_aliases             = [],
   $proxy_host                 = undef,
   $port                       = 80,
   $ssl_certificate            = undef,

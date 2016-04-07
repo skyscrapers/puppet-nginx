@@ -1,7 +1,7 @@
 server {
 
     listen *:<%= @port %>;
-    server_name <%= @hostname %>;
+    server_name <%= @hostname %> <% @server_aliases.each do |server_alias| -%><%= server_alias %> <% end -%>;
     <% if @ssl == true %>
     ssl_certificate           <%= @ssl_certificate %>;
     ssl_certificate_key       <%= @ssl_certificate_key %>;
