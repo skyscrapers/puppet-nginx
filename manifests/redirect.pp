@@ -55,6 +55,7 @@ define nginx::redirect (
     $ip = '*',
     $port = undef,
     $server_aliases = [],
+    $client_max_body_size = '1m',
     $ssl_certificate = undef,
     $ssl_certificate_key = undef,
     $ssl_dh_param = undef,

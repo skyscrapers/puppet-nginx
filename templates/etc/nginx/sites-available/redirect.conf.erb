@@ -19,5 +19,7 @@ server {
   ssl_ciphers AES256+EECDH:AES256+EDH:AES128+EDH:!aNULL;
   <% end %>
 
+  client_max_body_size <%= @client_max_body_size %>
+  
   return  301     <%= @target %>$request_uri;
 }
