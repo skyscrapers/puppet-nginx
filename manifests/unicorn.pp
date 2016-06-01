@@ -26,6 +26,7 @@ define nginx::unicorn (
   $root_path                  = undef,
   $ssl_certificate            = undef,
   $ssl_certificate_key        = undef,
+  $ssl_dh_param               = undef,
   $basic_authentication_file  = undef,
   $timeout                    = 20,
   ){
