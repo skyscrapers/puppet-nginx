@@ -20,7 +20,8 @@
 # This class will install a PHP-FPM proxy
 #
 define nginx::fpm (
-    $server_name,
+    $root_path = undef,
+    $log_path = undef,
     $port = 80,
     $http_auth = false,
     $server_aliases = [],

@@ -1,6 +1,6 @@
 server {
   listen <%= @port %>;
-  server_name <%= @server_name %> <% @server_aliases.each do |server_alias| -%><%= server_alias %> <% end -%>;
+  server_name <%= @name %> <% @server_aliases.each do |server_alias| -%><%= server_alias %> <% end -%>;
   server_name_in_redirect off;
 
 
@@ -20,10 +20,11 @@ server {
   ssl_ciphers AES256+EECDH:AES256+EDH:AES128+EDH:!aNULL;
   <% end %>
 
-  root /var/www/<%= @name %>/current/public;
+  root <%= @root_path %>;
 
-  access_log /var/www/<%= @name %>/logs/access.log;
-  error_log /var/www/<%= @name %>/logs/error.log;
+  access_log <%= @log_path %>/access.log;
+  error_log <%= @log_path %>/error.log;
+
   index index.html index.php;
 
   location / {
@@ -52,7 +53,7 @@ server {
   listen 127.0.0.1:80;
   server_name localhost;
 
-  root /var/www/<%= @name %>/current;
+  root <%= @root_path %>;
 
   location ~ ^/(fpm_status|fpm_ping)$ {
     access_log off;
