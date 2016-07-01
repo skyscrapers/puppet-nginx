@@ -12,7 +12,7 @@ server {
   ssl_dhparam <%= @ssl_dh_param %>;
   <% end %>
 
-
+  ssl on;
   ssl_session_cache  shared:SSL:10m;
   ssl_session_timeout  10m;
   ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
