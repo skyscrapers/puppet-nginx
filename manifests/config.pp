@@ -41,7 +41,7 @@ class nginx::config {
       require => File['/etc/nginx/sites-available/status'],
       notify  => Service['nginx'];
 
-    'etc/nginx/fastcgi_params':
+    '/etc/nginx/fastcgi_params':
       ensure => file,
       source => 'puppet:///modules/nginx/etc/nginx/fastcgi_params',
       mode   => '0644',
