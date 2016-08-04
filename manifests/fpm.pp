@@ -29,6 +29,7 @@ define nginx::fpm (
     $ssl_certificate = undef,
     $ssl_certificate_key = undef,
     $ssl_dh_param = undef,
+    $fast_cgi_params = {},
   ){
 
   if ! defined(Class['nginx']) {
