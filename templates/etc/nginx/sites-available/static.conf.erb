@@ -1,0 +1,77 @@
+# {{ ansible_managed }}
+#
+server {
+
+  # Listen
+  listen <%= @ip %>:<%= @port %>;
+  <% if @ssl == true %>
+  ssl on;
+  ssl_certificate /etc/nginx/ssl/<%= @ssl_certificate %>;
+  ssl_certificate_key /etc/nginx/ssl/<%= @ssl_certificate_key %>;
+  <% if @ssl_dh_param %>
+  ssl_dhparam /etc/nginx/ssl/<%= @ssl_dh_param %>;
+  <% end %>
+
+  ssl_session_cache  shared:SSL:10m;
+  ssl_session_timeout  10m;
+  keepalive_timeout    70;
+
+  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+  ssl_prefer_server_ciphers on;
+  ssl_ciphers AES256+EECDH:AES256+EDH:AES128+EDH:!aNULL;
+  <% end %>
+  # Hosts
+  server_name <%= @name %> <% @server_aliases.each do |server_alias| -%><%= server_alias %> <% end -%>;
+  client_max_body_size <%= @client_max_body_size %>;
+
+  access_log  /var/log/nginx/<%= @name %>.access.log;
+  # Root
+  root <%= @root_path %>;
+
+  index index.html index.htm;
+
+  gzip_vary on;
+  gzip_static on;
+
+  error_page 404 /404.html;
+
+  location = /favicon.ico {
+    expires 14d;
+    log_not_found off;
+    access_log off;
+  }
+
+  location = /robots.txt {
+    allow all;
+    log_not_found off;
+    access_log off;
+  }
+
+  # Block access to "hidden" files and directories whose names begin with a
+  # period. This includes directories used by version control systems such
+  # as Subversion or Git to store control files.
+  location ~ (^|/)\. {
+    deny all;
+  }
+
+  location / {
+    # First attempt to serve request as file, then
+    # as directory, then fall back to displaying a 404.
+    gzip_static on;
+    gzip on;
+    gzip_vary on;
+    gzip_proxied any;
+    log_not_found off;
+    add_header Access-Control-Allow-Origin "*";
+    try_files  <% @option_paths.each do |option_path| %>/<%=  option_path -%>/$uri <% end %>>=404;
+  }
+  location = /404.html {
+    try_files /404.html @generic404;
+    internal;
+  }
+
+  location @generic404 {
+    root /var/www/html/;
+  }
+
+}
