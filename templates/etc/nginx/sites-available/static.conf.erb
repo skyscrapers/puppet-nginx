@@ -63,7 +63,7 @@ server {
     gzip_proxied any;
     log_not_found off;
     add_header Access-Control-Allow-Origin "*";
-    try_files  <% @option_paths.each do |option_path| %>/<%=  option_path -%>/$uri <% end %>=404;
+    try_files  <% @option_paths.each do |option_path| %>/<%=  option_path -%>$uri <% end %>=404;
   }
   location = /404.html {
     try_files /404.html @generic404;
