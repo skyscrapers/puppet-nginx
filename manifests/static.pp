@@ -22,17 +22,13 @@
 define nginx::static (
   $root_path                  = undef,
   $option_paths                = undef,
-  $hostname                   = undef,
   $server_aliases             = [],
-  $static_host                 = undef,
   $port                       = 80,
   $ip                         = '',
   $client_max_body_size       = '1m',
   $ssl_certificate            = undef,
   $ssl_certificate_key        = undef,
   $ssl_dh_param               = undef,
-  $basic_authentication_file  = undef,
-  $static_ssl_out              = false
   ){
 
   if ! defined(Class['nginx']) {
