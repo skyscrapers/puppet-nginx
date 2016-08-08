@@ -39,18 +39,10 @@ define nginx::static (
     fail('You must include the nginx base class before using any nginx defined resources')
   }
 
-  $url = "http://${hostname}"
-
   if($ssl_certificate == undef or $ssl_certificate_key == undef){
     $ssl = false
   } else {
     $ssl = true
-  }
-
-  if($static_ssl_out){
-     $_protocol = 'https'
-  } else {
-     $_protocol = 'http'
   }
 
   file {
