@@ -25,6 +25,7 @@ define nginx::fpm (
     $port = 80,
     $http_auth = false,
     $server_aliases = [],
+    $client_max_body_size = '1m',
     $fpm_port = 9000,
     $ssl_certificate = undef,
     $ssl_certificate_key = undef,
