@@ -21,7 +21,8 @@
 #
 define nginx::static (
   $root_path                  = undef,
-  $option_paths                = undef,
+  $log_path                   = '/var/log/nginx',
+  $option_paths               = undef,
   $server_aliases             = [],
   $port                       = 80,
   $ip                         = '',

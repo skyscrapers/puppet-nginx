@@ -24,7 +24,8 @@ server {
   server_name <%= @name %> <% @server_aliases.each do |server_alias| -%><%= server_alias %> <% end -%>;
   client_max_body_size <%= @client_max_body_size %>;
 
-  access_log  /var/log/nginx/<%= @name %>.access.log;
+  access_log <%= @log_path %>/access.log;
+  error_log <%= @log_path %>/error.log;
   # Root
   root <%= @root_path %>;
 
