@@ -42,6 +42,9 @@ server {
   <%- end -%>
   <%- end -%>
   }
+  <%- for @optional_lines.each do |optional_line| -%>
+     <%= optional_line %>
+  <%- end -%>
 
   # gzip
   gzip on;
@@ -67,4 +70,5 @@ server {
     include fastcgi_params;
     fastcgi_pass 127.0.0.1:<%= @fpm_port %>;
   }
+
 }
