@@ -1,16 +1,11 @@
-<% if @maps %>
-<%- @maps.each do |map| -%>
-map   <%= map['nginx_var'] %> <%= map['mapping'] %> {
-  <%- map['mapping_values'].each do |key, value| -%>
-  <%= key %> <%= value %>
+<%- @maps.each do |mapping| -%>
+map <%= mapping['nginx_var'] %> <%= mapping['mapping'] %> {
+  <%- mapping['mapping_values'].each do |key, value| -%>
+  <%= key %> <%= value %>;
   <%- end -%>
 }
 <%- end -%>
-<%- end -%>
-map $http_x_forwarded_proto $xproto {
-  default http;
-  https https;
-}
+
 server {
   listen <%= @port %>;
   server_name <%= @name %> <% @server_aliases.each do |server_alias| -%><%= server_alias %> <% end -%>;
