@@ -32,6 +32,7 @@ define nginx::fpm (
     $ssl_dh_param = undef,
     $fast_cgi_params = {},
     $optional_lines = [],
+    $maps = [],
   ){
 
   if ! defined(Class['nginx']) {

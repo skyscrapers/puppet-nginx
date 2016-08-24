@@ -1,3 +1,11 @@
+<%- @maps.each do |mapping| -%>
+map <%= mapping['nginx_var'] %> <%= mapping['mapping'] %> {
+  <%- mapping['mapping_values'].each do |key, value| -%>
+  <%= key %> <%= value %>;
+  <%- end -%>
+}
+<%- end -%>
+
 server {
   listen <%= @port %>;
   server_name <%= @name %> <% @server_aliases.each do |server_alias| -%><%= server_alias %> <% end -%>;
