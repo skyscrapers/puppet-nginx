@@ -41,7 +41,8 @@ server {
 
   location ~ ^(.+\.php)(.*)$ {
     include fastcgi_params;
-
+    #allows to handle 404 in case of a file not found in fpm
+    try_files $uri =404;
     fastcgi_pass 127.0.0.1:<%= @fpm_port %>;
     fastcgi_index index.php;
   <%- if @fast_cgi_params.empty? != true  -%>
