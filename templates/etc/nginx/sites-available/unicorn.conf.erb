@@ -6,6 +6,7 @@ upstream <%= @name %> {
 server {
 
   listen <%= @port %>;
+  listen [::]:<%= @port %>;
   server_name <%= @hostname %>;
   <% if @ssl == true %>
   ssl_certificate           <%= @ssl_certificate %>;

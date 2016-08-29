@@ -1,5 +1,6 @@
 server {
-  listen          *:<%= @port %>;
+  listen <%= @port %>;
+  listen [::]:<%= @port %>;
 
   keepalive_timeout    70;
 
