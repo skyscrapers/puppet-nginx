@@ -30,7 +30,11 @@ server {
 
   root <%= @root_path %>;
 
+  <%- if @timed_combined.empty? != true  -%>
+  access_log <%= @log_path %>/access.log <%= @timed_combined %>;
+  <%- else -%>
   access_log <%= @log_path %>/access.log;
+  <%- end -%>
   error_log <%= @log_path %>/error.log;
 
   index index.html index.php;

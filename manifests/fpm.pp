@@ -22,6 +22,7 @@
 define nginx::fpm (
     $root_path = undef,
     $log_path = '/var/log/nginx',
+    $timed_combined = undef,
     $port = 80,
     $http_auth = false,
     $server_aliases = [],
