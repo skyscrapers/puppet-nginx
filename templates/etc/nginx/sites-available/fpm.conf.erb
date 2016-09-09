@@ -30,8 +30,8 @@ server {
 
   root <%= @root_path %>;
 
-  <%- if @timed_combined.empty? != true  -%>
-  access_log <%= @log_path %>/access.log <%= @timed_combined %>;
+  <%- if @log_format.empty? != true  -%>
+  access_log <%= @log_path %>/access.log <%= @log_format %>;
   <%- else -%>
   access_log <%= @log_path %>/access.log;
   <%- end -%>
