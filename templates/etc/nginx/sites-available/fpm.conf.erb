@@ -30,7 +30,7 @@ server {
 
   root <%= @root_path %>;
 
-  <%- if @log_format.empty? != true  -%>
+  <%- if @log_format -%>
   access_log <%= @log_path %>/access.log <%= @log_format %>;
   <%- else -%>
   access_log <%= @log_path %>/access.log;
