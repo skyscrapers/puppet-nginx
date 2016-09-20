@@ -15,20 +15,21 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# == Class nginx::proxy
+# == Class nginx::static
 #
-# This class will install a proxy
+# This class will install a static
 #
-define nginx::unicorn (
-  $hostname                   = undef,
-  $port                       = 80,
-  $socket_path                = undef,
+define nginx::static (
   $root_path                  = undef,
+  $log_path                   = '/var/log/nginx',
+  $option_paths               = undef,
+  $server_aliases             = [],
+  $port                       = 80,
+  $ip                         = '',
+  $client_max_body_size       = '1m',
   $ssl_certificate            = undef,
   $ssl_certificate_key        = undef,
   $ssl_dh_param               = undef,
-  $basic_authentication_file  = undef,
-  $timeout                    = 20,
   ){
 
   if ! defined(Class['nginx']) {
@@ -44,7 +45,7 @@ define nginx::unicorn (
   file {
     "/etc/nginx/sites-available/${name}.conf":
       ensure   => file,
-      content  => template('nginx/etc/nginx/sites-available/unicorn.conf.erb'),
+      content  => template('nginx/etc/nginx/sites-available/static.conf.erb'),
       mode     => '0644',
       owner    => root,
       group    => root,

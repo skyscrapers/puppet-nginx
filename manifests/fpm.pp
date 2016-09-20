@@ -1,6 +1,6 @@
 ##### LICENSE
 
-# Copyright (c) Skyscrapers (iLibris bvba) 2014 - http://skyscrape.rs
+# Copyright (c) Skyscrapers (iLibris bvba) 2016 - http://skyscrape.rs
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,20 +15,25 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# == Class nginx::proxy
+# == Class nginx::fpm
 #
-# This class will install a proxy
+# This class will install a PHP-FPM proxy
 #
-define nginx::unicorn (
-  $hostname                   = undef,
-  $port                       = 80,
-  $socket_path                = undef,
-  $root_path                  = undef,
-  $ssl_certificate            = undef,
-  $ssl_certificate_key        = undef,
-  $ssl_dh_param               = undef,
-  $basic_authentication_file  = undef,
-  $timeout                    = 20,
+define nginx::fpm (
+    $root_path = undef,
+    $log_path = '/var/log/nginx',
+    $log_format = undef,
+    $port = 80,
+    $http_auth = false,
+    $server_aliases = [],
+    $client_max_body_size = '1m',
+    $fpm_port = 9000,
+    $ssl_certificate = undef,
+    $ssl_certificate_key = undef,
+    $ssl_dh_param = undef,
+    $fast_cgi_params = {},
+    $optional_lines = [],
+    $maps = [],
   ){
 
   if ! defined(Class['nginx']) {
@@ -44,7 +49,7 @@ define nginx::unicorn (
   file {
     "/etc/nginx/sites-available/${name}.conf":
       ensure   => file,
-      content  => template('nginx/etc/nginx/sites-available/unicorn.conf.erb'),
+      content  => template('nginx/etc/nginx/sites-available/fpm.conf.erb'),
       mode     => '0644',
       owner    => root,
       group    => root,

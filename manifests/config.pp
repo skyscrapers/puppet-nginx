@@ -40,6 +40,15 @@ class nginx::config {
       target  => '/etc/nginx/sites-available/status',
       require => File['/etc/nginx/sites-available/status'],
       notify  => Service['nginx'];
+
+    '/etc/nginx/fastcgi_params':
+      ensure => file,
+      source => 'puppet:///modules/nginx/etc/nginx/fastcgi_params',
+      mode   => '0644',
+      owner  => 'root',
+      group  => root,
+      notify => Service['nginx'];
+
   }
 
   if( $nginx::passenger == true ){
