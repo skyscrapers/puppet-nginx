@@ -26,6 +26,7 @@ define nginx::static (
   $server_aliases             = [],
   $port                       = 80,
   $ip                         = '',
+  $ipv6                       = '::',
   $enable_ipv6                = false,
   $client_max_body_size       = '1m',
   $ssl_certificate            = undef,

@@ -3,11 +3,9 @@
 server {
 
   # Listen
-  <% if @enable_ipv6 %>
-  listen <%= @port %>;
-  listen [::]:<%= @port %>;
-  <% else %>
   listen <%= @ip %>:<%= @port %>;
+  <% if @enable_ipv6 %>
+  listen [<%= @ipv6 %>]:<%= @port %>;
   <% end %>
   <% if @ssl == true %>
   ssl on;

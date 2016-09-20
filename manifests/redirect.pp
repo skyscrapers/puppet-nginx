@@ -52,7 +52,8 @@
 define nginx::redirect (
     $server_name,
     $target,
-    $ip = '*',
+    $ip = '',
+    $ipv6 = '::',
     $port = undef,
     $enable_ipv6 = false,
     $server_aliases = [],
