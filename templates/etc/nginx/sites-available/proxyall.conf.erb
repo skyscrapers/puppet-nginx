@@ -1,6 +1,8 @@
 server {
   listen <%= @port %>;
+  <% if @enable_ipv6 %>
   listen [::]:<%= @port %>;
+  <% end %>
 
   keepalive_timeout    70;
 

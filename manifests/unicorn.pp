@@ -22,6 +22,7 @@
 define nginx::unicorn (
   $hostname                   = undef,
   $port                       = 80,
+  $enable_ipv6                = false,
   $socket_path                = undef,
   $root_path                  = undef,
   $ssl_certificate            = undef,

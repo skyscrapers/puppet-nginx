@@ -54,6 +54,7 @@ define nginx::redirect (
     $target,
     $ip = '*',
     $port = undef,
+    $enable_ipv6 = false,
     $server_aliases = [],
     $ssl_certificate = undef,
     $ssl_certificate_key = undef,

@@ -24,6 +24,7 @@ define nginx::proxy (
   $server_aliases             = [],
   $proxy_host                 = undef,
   $port                       = 80,
+  $enable_ipv6                = false,
   $client_max_body_size       = '1m',
   $ssl_certificate            = undef,
   $ssl_certificate_key        = undef,

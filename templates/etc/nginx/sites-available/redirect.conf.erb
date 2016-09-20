@@ -1,6 +1,10 @@
 server {
+  <% if @enable_ipv6 %>
   listen <%= @port %>;
   listen [::]:<%= @port %>;
+  <% else %>
+  listen          <%= @ip %>:<%= @_port %>;
+  <% end %>
   server_name     <%= @server_name %> <% @server_aliases.each do |server_alias| -%><%= server_alias %> <% end -%>;
 
   <% if @ssl == true %>

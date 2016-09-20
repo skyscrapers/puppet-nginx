@@ -24,6 +24,7 @@ define nginx::fpm (
     $log_path = '/var/log/nginx',
     $log_format = undef,
     $port = 80,
+    $enable_ipv6 = false,
     $http_auth = false,
     $server_aliases = [],
     $client_max_body_size = '1m',
