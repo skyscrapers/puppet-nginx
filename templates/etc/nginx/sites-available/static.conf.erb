@@ -7,7 +7,7 @@ server {
   listen <%= @port %>;
   listen [::]:<%= @port %>;
   <% else %>
-  listen <%= @ip %>:<%= @_port %>;
+  listen <%= @ip %>:<%= @port %>;
   <% end %>
   <% if @ssl == true %>
   ssl on;

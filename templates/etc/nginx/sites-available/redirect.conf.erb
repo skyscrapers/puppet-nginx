@@ -1,7 +1,7 @@
 server {
   <% if @enable_ipv6 %>
-  listen <%= @port %>;
-  listen [::]:<%= @port %>;
+  listen <%= @_port %>;
+  listen [::]:<%= @_port %>;
   <% else %>
   listen          <%= @ip %>:<%= @_port %>;
   <% end %>
