@@ -4,6 +4,9 @@ server {
 
   # Listen
   listen <%= @ip %>:<%= @port %>;
+  <% if @enable_ipv6 %>
+  listen [<%= @ipv6 %>]:<%= @port %>;
+  <% end %>
   <% if @ssl == true %>
   ssl on;
   ssl_certificate /etc/nginx/ssl/<%= @ssl_certificate %>;

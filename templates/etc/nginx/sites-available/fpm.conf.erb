@@ -8,6 +8,9 @@ map <%= mapping['nginx_var'] %> <%= mapping['mapping'] %> {
 
 server {
   listen <%= @port %>;
+  <% if @enable_ipv6 %>
+  listen [::]:<%= @port %>;
+  <% end %>
   server_name <%= @name %> <% @server_aliases.each do |server_alias| -%><%= server_alias %> <% end -%>;
   server_name_in_redirect off;
   client_max_body_size <%= @client_max_body_size %>;

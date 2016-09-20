@@ -37,6 +37,7 @@
 define nginx::proxyall (
     $port,
     $target,
+    $enable_ipv6 = false,
   ) {
 
   file {

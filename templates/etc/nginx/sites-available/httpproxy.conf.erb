@@ -1,6 +1,8 @@
 server {
-
-    listen *:<%= @port %>;
+    listen <%= @port %>;
+    <% if @enable_ipv6 %>
+    listen [::]:<%= @port %>;
+    <% end %>
     server_name <%= @hostname %> <% @server_aliases.each do |server_alias| -%><%= server_alias %> <% end -%>;
     <% if @ssl == true %>
     ssl_certificate           <%= @ssl_certificate %>;

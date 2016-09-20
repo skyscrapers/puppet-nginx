@@ -6,6 +6,9 @@ upstream <%= @name %> {
 server {
 
   listen <%= @port %>;
+  <% if @enable_ipv6 %>
+  listen [::]:<%= @port %>;
+  <% end %>
   server_name <%= @hostname %>;
   <% if @ssl == true %>
   ssl_certificate           <%= @ssl_certificate %>;
