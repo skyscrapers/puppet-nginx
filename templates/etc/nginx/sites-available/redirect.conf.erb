@@ -19,5 +19,9 @@ server {
   ssl_ciphers AES256+EECDH:AES256+EDH:AES128+EDH:!aNULL;
   <% end %>
 
+  <% unless @access_control_allow_origin.nil? -%>
+  add_header 'Access-Control-Allow-Origin' '<%= @access_control_allow_origin %>';
+  <% end -%>
+
   return  301     <%= @target %>$request_uri;
 }
