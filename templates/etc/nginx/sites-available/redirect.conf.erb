@@ -22,5 +22,8 @@ server {
   ssl_ciphers AES256+EECDH:AES256+EDH:AES128+EDH:!aNULL;
   <% end %>
 
+  <% @extra_headers.each do |header, value| -%>
+  add_header '<%= header %>' '<%= value %>';
+  <% end -%>
   return  301     <%= @target %>$request_uri;
 }
