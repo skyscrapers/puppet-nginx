@@ -22,6 +22,5 @@ server {
   <% unless @access_control_allow_origin.nil? -%>
   add_header 'Access-Control-Allow-Origin' '<%= @access_control_allow_origin %>';
   <% end -%>
-
   return  301     <%= @target %>$request_uri;
 }
