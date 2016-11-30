@@ -42,6 +42,10 @@ server {
 
   index index.html index.php;
 
+  <%- if @http_auth -%>
+  auth_basic           "Restricted access";
+  auth_basic_user_file <%= @http_auth %>;
+  <%- end -%>
   location / {
     try_files $uri $uri/ /index.php?$args;
   }
