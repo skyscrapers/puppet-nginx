@@ -21,11 +21,11 @@ server {
 
   <% if @ssl_dh_param %>
   ssl_dhparam <%= @ssl_dh_param %>;
-    <% if @https_redirect %>
+  <% end %>
+  <% if @https_redirect %>
   if ($http_x_forwarded_proto != "https") {
     rewrite ^(.*)$ https://$server_name$1 permanent;
   }
-    <% end %>
   <% end %>
 
   ssl on;
