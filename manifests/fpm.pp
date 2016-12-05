@@ -32,6 +32,7 @@ define nginx::fpm (
     $ssl_certificate = undef,
     $ssl_certificate_key = undef,
     $ssl_dh_param = undef,
+    $https_redirect = false,
     $fast_cgi_params = {},
     $optional_lines = [],
     $maps = [],
