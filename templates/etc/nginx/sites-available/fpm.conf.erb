@@ -73,7 +73,8 @@ server {
 
   <%- if @etag -%>
   etag on;
-  <%- end -%>
+  gzip off;
+  <%- else -%>
   # gzip
   gzip on;
   gzip_disable "MSIE [1-6]\.(?!.*SV1)";
@@ -83,6 +84,7 @@ server {
   gzip_proxied any;
   gzip_types text/plain text/html text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript application/javascript text/x-js ;
   gzip_buffers 16 8k;
+  <%- end -%>
   <%- unless @proxy_websocket_match.nil? or @proxy_websocket_upstream.nil? -%>
 
   location <%= @proxy_websocket_match %> {
