@@ -71,6 +71,9 @@ server {
      <%= optional_line %>;
   <%- end -%>
 
+  <%- if @etag -%>
+  etag on;
+  <%- end -%>
   # gzip
   gzip on;
   gzip_disable "MSIE [1-6]\.(?!.*SV1)";
