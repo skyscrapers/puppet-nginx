@@ -38,6 +38,7 @@ define nginx::fpm (
     $maps = [],
     $proxy_websocket_match = undef,
     $proxy_websocket_upstream = undef,
+    $etag = false,
   ){
 
   if ! defined(Class['nginx']) {
