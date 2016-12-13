@@ -36,6 +36,8 @@ define nginx::fpm (
     $fast_cgi_params = {},
     $optional_lines = [],
     $maps = [],
+    $proxy_websocket_match = undef,
+    $proxy_websocket_upstream = undef,
   ){
 
   if ! defined(Class['nginx']) {
