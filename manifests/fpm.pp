@@ -39,6 +39,7 @@ define nginx::fpm (
     $proxy_websocket_match = undef,
     $proxy_websocket_upstream = undef,
     $etag = false,
+    $manage_letsencrypt_root = false,
   ){
 
   if ! defined(Class['nginx']) {
@@ -49,6 +50,17 @@ define nginx::fpm (
     $ssl = false
   } else {
     $ssl = true
+  }
+
+  if $manage_letsencrypt_root {
+    $letsencrypt_root = "/var/www/letsencrypt-${name}"
+    file {
+      $letsencrypt_root:
+        ensure => directory,
+        mode   => '0755',
+        owner  => root,
+        group  => www-data,
+    }
   }
 
   file {

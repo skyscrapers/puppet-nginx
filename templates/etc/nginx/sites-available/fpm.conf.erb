@@ -71,6 +71,13 @@ server {
      <%= optional_line %>;
   <%- end -%>
 
+  <%- if @manage_letsencrypt_root -%>
+  location /.well-known {
+    root <%= @letsencrypt_root %>;
+    try_files $uri $uri/;
+  }
+  <%- end -%>
+
   <%- if @etag -%>
   etag on;
   gzip off;
