@@ -53,7 +53,7 @@ define nginx::fpm (
   }
 
   if $manage_letsencrypt_root {
-    $letsencrypt_root = "/var/www/letsencrypt/${name}"
+    $letsencrypt_root = "/var/www/letsencrypt-${name}"
     file {
       $letsencrypt_root:
         ensure => directory,
