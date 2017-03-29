@@ -23,6 +23,10 @@ server {
 
     access_log            /var/log/nginx/<%= @name %>.access.log;
 
+    <%- @optional_lines.each do |optional_line| -%>
+    <%= optional_line %>;
+    <%- end -%>
+
     location / {
       <% if @basic_authentication_file %>
       auth_basic "Restricted";
