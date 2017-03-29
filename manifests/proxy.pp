@@ -32,6 +32,7 @@ define nginx::proxy (
   $basic_authentication_file  = undef,
   $proxy_ssl_out              = false,
   $timeout                    = '90',
+  $optional_lines             = [],
   ){
 
   if ! defined(Class['nginx']) {
