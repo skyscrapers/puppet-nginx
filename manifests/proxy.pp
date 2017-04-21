@@ -32,6 +32,7 @@ define nginx::proxy (
   $basic_authentication_file  = undef,
   $proxy_ssl_out              = false,
   $timeout                    = '90',
+  $template                   = 'nginx/etc/nginx/sites-available/httpproxy.conf.erb',
   ){
 
   if ! defined(Class['nginx']) {
@@ -55,7 +56,7 @@ define nginx::proxy (
   file {
     "/etc/nginx/sites-available/${name}.conf":
       ensure   => file,
-      content  => template('nginx/etc/nginx/sites-available/httpproxy.conf.erb'),
+      content  => template($template),
       mode     => '0644',
       owner    => root,
       group    => root,
