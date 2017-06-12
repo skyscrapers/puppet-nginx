@@ -18,6 +18,7 @@
 }
 
 /var/www/*/sites/*/logs/*.log {
+        su www-data www-data
 	weekly
 	missingok
 	rotate 52
