@@ -125,3 +125,17 @@ server {
   }
 
 }
+
+<%- if @letsencrypt_enabled -%>
+server {
+  listen 80;
+  server_name <%= @server_name %> <% @server_aliases.each do |server_alias| -%><%= server_alias %> <% end -%>;
+  location ^~ /.well-known/acme-challenge/ {
+  default_type "text/plain";
+    root /var/www/<%= @name %>/current/public/;
+  }
+  location / {
+    return  302 https://<%= @server_name %>$request_uri;
+  }
+}
+<%- end -%>

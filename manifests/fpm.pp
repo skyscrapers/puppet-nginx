@@ -40,6 +40,7 @@ define nginx::fpm (
     $proxy_websocket_upstream = undef,
     $etag = false,
     $manage_letsencrypt_root = false,
+    $letsencrypt_enabled = false,
   ){
 
   if ! defined(Class['nginx']) {
