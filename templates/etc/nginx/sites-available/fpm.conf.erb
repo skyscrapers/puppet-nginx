@@ -7,7 +7,7 @@ map <%= mapping['nginx_var'] %> <%= mapping['mapping'] %> {
 <%- end -%>
 
 server {
-  listen <%= @port %>;
+  listen <%= @port %><% if @http2 %> http2<% end %>;
   <% if @enable_ipv6 %>
   listen [::]:<%= @port %>;
   <% end %>
