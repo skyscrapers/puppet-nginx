@@ -26,6 +26,13 @@ server {
     <%- @optional_lines.each do |optional_line| -%>
     <%= optional_line %>;
     <%- end -%>
+    
+    <%- if @manage_letsencrypt_root -%>
+    location /.well-known {
+      root <%= @letsencrypt_root %>;
+      try_files $uri $uri/ =404;
+    }
+    <%- end -%>
 
     location / {
       <% if @basic_authentication_file %>
