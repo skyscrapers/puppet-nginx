@@ -33,6 +33,7 @@ define nginx::proxy (
   $proxy_ssl_out              = false,
   $timeout                    = '90',
   $optional_lines             = [],
+  $manage_letsencrypt_root    = false,
   ){
 
   if ! defined(Class['nginx']) {
@@ -48,9 +49,20 @@ define nginx::proxy (
   }
 
   if($proxy_ssl_out){
-     $_protocol = 'https'
+    $_protocol = 'https'
   } else {
-     $_protocol = 'http'
+    $_protocol = 'http'
+  }
+
+  if $manage_letsencrypt_root {
+    $letsencrypt_root = "/var/www/letsencrypt-${name}"
+    file {
+      $letsencrypt_root:
+        ensure => directory,
+        mode   => '0755',
+        owner  => root,
+        group  => www-data,
+    }
   }
 
   file {
