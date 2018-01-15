@@ -73,6 +73,9 @@ server {
 
   <%- if @manage_letsencrypt_root -%>
   location /.well-known {
+    <%- if @http_auth -%>
+    auth_basic off;
+    <%- end -%>
     root <%= @letsencrypt_root %>;
     try_files $uri $uri/ =404;
   }
