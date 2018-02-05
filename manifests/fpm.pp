@@ -41,6 +41,8 @@ define nginx::fpm (
     $etag                     = false,
     $manage_letsencrypt_root  = false,
     $http2                    = false,
+    $x_forwarded_for          = false,
+    $real_ip_from             = ['10.0.0.0/8'],
   ){
 
   if ! defined(Class['nginx']) {
