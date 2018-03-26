@@ -45,6 +45,13 @@ server {
   auth_basic_user_file <%= @http_auth %>;
   <%- end -%>
 
+  <%- if @manage_letsencrypt_root -%>
+  location ^~ /.well-known {
+    root <%= @letsencrypt_root %>;
+    try_files $uri $uri/ =404;
+  }
+  <%- end -%>
+
   # Block access to "hidden" files and directories whose names begin with a
   # period. This includes directories used by version control systems such
   # as Subversion or Git to store control files.
@@ -60,12 +67,6 @@ server {
      <%= optional_line %>;
   <%- end -%>
 
-  <%- if @manage_letsencrypt_root -%>
-  location /.well-known {
-    root <%= @letsencrypt_root %>;
-    try_files $uri $uri/ =404;
-  }
-  <%- end -%>
 
   <%- if @etag -%>
   etag on;
