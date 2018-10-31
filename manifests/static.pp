@@ -32,6 +32,7 @@ define nginx::static (
   $ssl_certificate            = undef,
   $ssl_certificate_key        = undef,
   $ssl_dh_param               = undef,
+  $http_auth                  = false,
   ){
 
   if ! defined(Class['nginx']) {
