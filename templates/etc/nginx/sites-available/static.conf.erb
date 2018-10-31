@@ -34,6 +34,11 @@ server {
 
   index index.html index.htm;
 
+  <%- if @http_auth -%>
+  auth_basic           "Restricted access";
+  auth_basic_user_file <%= @http_auth %>;
+  <%- end -%>
+  
   gzip_vary on;
   gzip_static on;
 
