@@ -1,5 +1,10 @@
 # Puppet Managed
 #
+
+<%- if @addiotional_http_config -%>
+<%= @addiotional_http_config %>;
+<%- end -%>
+
 server {
 
   # Listen

@@ -32,6 +32,7 @@ define nginx::static (
   $ssl_certificate            = undef,
   $ssl_certificate_key        = undef,
   $ssl_dh_param               = undef,
+  $addiotional_http_config    = undef,
   $http_auth                  = false,
   ){
 
