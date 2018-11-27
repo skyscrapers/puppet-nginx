@@ -79,7 +79,7 @@ server {
     add_header Access-Control-Allow-Origin "*";
 
     <%- if @option_paths -%>
-    try_files  <% @option_paths.each do |option_path| %>/<%=  option_path -%>$uri <% end %>=404;
+    try_files  <% @option_paths.each do |option_path| %><%=  option_path -%>$uri <% end %>=404;
     <%- end -%>  
   }
   location = /404.html {
