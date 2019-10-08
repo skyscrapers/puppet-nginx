@@ -39,6 +39,7 @@ define nginx::fpm (
     $proxy_websocket_match    = undef,
     $proxy_websocket_upstream = undef,
     $etag                     = false,
+    $gzip                     = true,
     $manage_letsencrypt_root  = false,
     $http2                    = false,
     $x_forwarded_for          = false,
