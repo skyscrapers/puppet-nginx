@@ -77,16 +77,14 @@ server {
   <%- if @additional_fpm_location -%>
   location ~ ^<%= @additional_fpm_location %> {
     include fastcgi_params;
-    #allows to handle 404 in case of a file not found in fpm
-    try_files $uri =404;
     fastcgi_pass 127.0.0.1:<%= @fpm_port %>;
     fastcgi_index index.php;
+    fastcgi_param SCRIPT_FILENAME $document_root/index.php;
   <%- if @fast_cgi_params.empty? != true  -%>
   <%- @fast_cgi_params.sort_by {|key, value| key}.each do |key, value| -%>
       fastcgi_param <%= key %> "<%= value %>";
   <%- end -%>
   <%- end -%>  
-
   <%- @additional_fpm_location_lines.each do |additional_fpm_location_line| -%>
      <%= additional_fpm_location_line %>;
   <%- end -%>  
