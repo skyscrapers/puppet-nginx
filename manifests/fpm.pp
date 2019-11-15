@@ -41,7 +41,6 @@ define nginx::fpm (
     $additional_fpm_location       = undef,
     $additional_fpm_location_lines = [],
     $etag                          = false,
-    $gzip                          = true,
     $manage_letsencrypt_root       = false,
     $http2                         = false,
     $x_forwarded_for               = false,
