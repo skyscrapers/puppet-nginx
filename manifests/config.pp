@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class nginx::config (
-    $log_rotation_frequency  = 'weekly';
+    $log_rotation_frequency  = 'weekly',
 ){
 
   file {
