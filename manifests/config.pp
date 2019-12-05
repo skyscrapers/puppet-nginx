@@ -15,7 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-class nginx::config {
+class nginx::config (
+    $log_rotation_frequency  = 'weekly';
+){
 
   file {
     '/etc/nginx/conf.d/security.conf':
@@ -66,11 +68,11 @@ class nginx::config {
   # logrotate
   file {
     '/etc/logrotate.d/nginx':
-      ensure   => file,
-      source   => 'puppet:///modules/nginx/etc/logrotate.d/nginx',
-      mode     => '0644',
-      owner    => root,
-      group    => root;
+      ensure    => file,
+      content   => template('nginx/etc/logrotate.d/nginx'),
+      mode      => '0644',
+      owner     => root,
+      group     => root;
   }
 
 }
