@@ -69,7 +69,7 @@ class nginx::config (
   file {
     '/etc/logrotate.d/nginx':
       ensure    => file,
-      content   => template('nginx/etc/logrotate.d/nginx'),
+      content   => template('nginx/etc/logrotate.d/nginx.erb'),
       mode      => '0644',
       owner     => root,
       group     => root;
