@@ -1,5 +1,5 @@
 /var/log/nginx/*.log {
-	weekly
+	<%= @log_rotatation_frequency %>
 	missingok
 	rotate 52
 	compress
@@ -19,7 +19,7 @@
 
 /var/www/*/sites/*/logs/*.log {
         su www-data www-data
-	weekly
+	<%= @log_rotatation_frequency %>
 	missingok
 	rotate 52
 	compress
@@ -36,3 +36,24 @@
 		[ -s /var/run/nginx.pid ] && kill -USR1 `cat /var/run/nginx.pid`
 	endscript
 }
+
+/var/www/*/logs/*.log {
+        su www-data www-data
+        <%= @log_rotatation_frequency %>
+        missingok
+        rotate 52
+        compress
+        delaycompress
+        notifempty
+        create 0640 www-data www-data
+        sharedscripts
+        prerotate
+                if [ -d /etc/logrotate.d/httpd-prerotate ]; then \
+                        run-parts /etc/logrotate.d/httpd-prerotate; \
+                fi \
+        endscript
+        postrotate
+                [ -s /var/run/nginx.pid ] && kill -USR1 `cat /var/run/nginx.pid`
+        endscript
+}
+
