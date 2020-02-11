@@ -95,6 +95,16 @@ server {
      <%= optional_line %>;
   <%- end -%>
 
+  <%- if @additional_location_block -%>
+  location ~ ^<%= @additional_location_block %> {
+  <%- @additional_location_block_lines.each do |additional_location_block_line| -%>
+     <%= additional_location_block_line %>;
+  <%- end -%>
+
+  }
+
+  <%- end -%>
+
   <%- if @manage_letsencrypt_root -%>
   location /.well-known {
     <%- if @http_auth -%>
