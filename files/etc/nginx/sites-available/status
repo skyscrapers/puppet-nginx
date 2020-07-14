@@ -2,7 +2,7 @@
 
 server {
 
-	listen	         *:8888 default;
+        listen	         *:8888 default;
         server_tokens    on;
 	
 	location /status {
