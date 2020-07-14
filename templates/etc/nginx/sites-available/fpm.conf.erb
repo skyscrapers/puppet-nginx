@@ -6,6 +6,10 @@ map <%= mapping['nginx_var'] %> <%= mapping['mapping'] %> {
 }
 <%- end -%>
 
+<%- if @custom_log_format -%>
+  log_format <%= @log_format %> <%= @custom_log_format %>;
+<%- end -%>
+
 server {
   listen <%= @port %><% if @http2 %> http2<% end %>;
   <% if @enable_ipv6 %>
