@@ -3,7 +3,7 @@
 server {
 
 	listen	      	*:8888 default;
-  server_tokens   on;
+        server_tokens   on;
 	
 	location /status {
 		stub_status on;
