@@ -2,12 +2,13 @@
 
 server {
 
-	listen		*:8888 default;
+  listen	         *:8888 default;
+  server_tokens    on;
 
-	location /status {
-		stub_status on;
-		access_log   off;
-		allow 127.0.0.1;
-		deny all;
-	}
+  location /status {
+    stub_status on;
+    access_log   off;
+    allow 127.0.0.1;
+    deny all;
+  }
 }
